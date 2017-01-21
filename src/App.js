@@ -28,12 +28,25 @@ class App extends Component {
     event.preventDefault();
   }
 
+  handleQuestionSubmit(event) {
+
+  }
+
   render() {
     var user;
     var questions;
 
     if (this.state.name && this.state.submitted === false) {
       user = <h2>Welcome {this.state.name}</h2>
+      questions = <span>
+        <h3>Survey Questions</h3>
+        <form onSubmit={this.handleQuestionSubmit.bind(this)}>
+          <div>
+            <label>What is your favorite operating system?</label>
+            <input type="radio" name="q1" value="Windows" />Windows<br />
+          </div>
+        </form>
+      </span>
     } else if (!this.state.name && this.state.submitted === false) {
       user = <span>
                 <h2>Please enter your name to begin the survey</h2>
@@ -53,7 +66,9 @@ class App extends Component {
         </div>
         <div className="text-center">
           {user}
-        
+        </div>
+        <div className="container">
+          {questions}
         </div>
       </div>
     );
